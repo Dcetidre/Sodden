@@ -1,0 +1,25 @@
+plugins {
+	id 'fabric-loom' version '0.2.0-SNAPSHOT'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = "sodden"
+version = "1.0.0.0"
+
+dependencies {
+	minecraft "com.mojang:minecraft:19w11b"
+	mappings "net.fabricmc:yarn:19w11b.11"
+	modCompile "net.fabricmc:fabric-loader:0.3.7.109"
+	modCompile "net.fabricmc:fabric:0.2.3.111"
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
