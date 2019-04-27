@@ -2,14 +2,8 @@ package toyhippogriff.sodden.item;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
-import com.google.gson.annotations.JsonAdapter;
 import toyhippogriff.sodden.api.item.WateringCanMaterial;
 
-import java.lang.reflect.Type;
-
-@JsonAdapter(WateringCanMaterials.Serializer.class)
 public enum WateringCanMaterials implements WateringCanMaterial
 {
     WOOD(4000, 50, 0, 0.35F, 0.0F, 0.15F),
@@ -71,7 +65,7 @@ public enum WateringCanMaterials implements WateringCanMaterial
         return spreadChance;
     }
 
-    public void loadFromJson(JsonElement jsonElement)
+    public void deserialize(JsonElement jsonElement)
     {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
 
@@ -83,21 +77,17 @@ public enum WateringCanMaterials implements WateringCanMaterial
         this.spreadChance = jsonObject.getAsJsonPrimitive("spread_chance").getAsFloat();
     }
 
-    public static class Serializer implements JsonSerializer<WateringCanMaterials>
+    public JsonObject serialize()
     {
-        @Override
-        public JsonElement serialize(WateringCanMaterials instance, Type type, JsonSerializationContext context)
-        {
-            JsonObject jsonObject = new JsonObject();
+        JsonObject jsonObject = new JsonObject();
 
-            jsonObject.addProperty("capacity", instance.capacity);
-            jsonObject.addProperty("usage", instance.usage);
-            jsonObject.addProperty("radius", instance.radius);
-            jsonObject.addProperty("crop_growth_chance", instance.cropGrowthChance);
-            jsonObject.addProperty("flower_growth_chance", instance.flowerGrowthChance);
-            jsonObject.addProperty("spread_chance", instance.spreadChance);
+        jsonObject.addProperty("capacity", capacity);
+        jsonObject.addProperty("usage", usage);
+        jsonObject.addProperty("radius", radius);
+        jsonObject.addProperty("crop_growth_chance", cropGrowthChance);
+        jsonObject.addProperty("flower_growth_chance", flowerGrowthChance);
+        jsonObject.addProperty("spread_chance", spreadChance);
 
-            return jsonObject;
-        }
+        return jsonObject;
     }
 }

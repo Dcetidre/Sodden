@@ -1,13 +1,25 @@
 {
+    "schemaVersion": 1,
     "id": "sodden",
     "name": "Sodden",
+    "version": "1.0.1.1",
     "description": "Adds configurable, tiered watering cans to accelerate plant growth.",
-    "version": "1.0.0.0",
-    "side": "universal",
-    "initializers": [
-        "toyhippogriff.sodden.Sodden"
+    "authors": [
+        "toyhippogriff"
     ],
+    "icon": "assets/sodden/icon.png",
+    "contact": {
+        "sources": "https://www.github.com/toyhippogriff/Sodden"
+    },
+    "license": "GPL-3.0",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "toyhippogriff.sodden.Sodden"
+        ]
+    },
     "requires": {
+        "fabricloader": ">=0.4.0",
         "fabric": "*"
     }
 }

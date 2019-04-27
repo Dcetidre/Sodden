@@ -3,9 +3,9 @@ package toyhippogriff.sodden.item;
 import net.minecraft.block.BambooBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.CactusBlock;
 import net.minecraft.block.ChorusFlowerBlock;
+import net.minecraft.block.CocoaBlock;
 import net.minecraft.block.ConnectedPlantBlock;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.FireBlock;
@@ -79,11 +79,17 @@ public class WateringCanItem extends Item
 
             int radius = material.getRadius();
 
-            this.addSplashParticles(world, blockPos, radius);
+            if(Configuration.SPAWN_PARTICLES)
+            {
+                this.addSplashParticles(world, blockPos, radius);
+            }
 
-            Iterable<BlockPos> affectedArea = BlockPos.iterateBoxPositions(blockPos.add(-radius, -1, -radius), blockPos.add(radius, 1, radius));
+            Iterable<BlockPos> affectedArea = BlockPos.iterate(blockPos.add(-radius, -1, -radius), blockPos.add(radius, 1, radius));
 
-            this.moisturizeFarmland(world, affectedArea);
+            if(Configuration.MOISTURIZE_FARMLAND)
+            {
+                this.moisturizeFarmland(world, affectedArea);
+            }
 
             if(!world.isClient)
             {
@@ -160,7 +166,12 @@ public class WateringCanItem extends Item
 
                 if(moisture < 7)
                 {
-                    world.setBlockState(blockPos, blockState.with(FarmlandBlock.MOISTURE, 7), 3);
+                    boolean moisturizeFarmland = world.random.nextInt(7) == 0;
+
+                    if(moisturizeFarmland)
+                    {
+                        world.setBlockState(blockPos, blockState.with(FarmlandBlock.MOISTURE, 7), 3);
+                    }
                 }
             }
         });
@@ -179,7 +190,7 @@ public class WateringCanItem extends Item
 
             if(growCrops)
             {
-                if(block instanceof PlantBlock || block instanceof ConnectedPlantBlock || block instanceof SugarCaneBlock || block instanceof CactusBlock || block instanceof BambooBlock || block instanceof ChorusFlowerBlock)
+                if(block instanceof PlantBlock || block instanceof ConnectedPlantBlock || block instanceof SugarCaneBlock || block instanceof CactusBlock || block instanceof CocoaBlock || block instanceof BambooBlock || block instanceof ChorusFlowerBlock)
                 {
                     world.getBlockTickScheduler().schedule(blockPos, block, 0);
                 }
@@ -204,7 +215,7 @@ public class WateringCanItem extends Item
 
                         if(growFlower && flowerBlockState.canPlaceAt(world, blockPos))
                         {
-                            world.setBlockState(aboveBlockPos, flowerBlockState);
+                            world.setBlockState(aboveBlockPos, flowerBlockState, 3);
                         }
                     }
                 }
@@ -217,7 +228,12 @@ public class WateringCanItem extends Item
 
             if(Configuration.EXTINGUISH_FIRE && block instanceof FireBlock)
             {
-                world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
+                boolean extinguishFire = world.random.nextInt(3) == 0;
+
+                if(extinguishFire)
+                {
+                    world.clearBlockState(blockPos, false);
+                }
             }
         });
     }
