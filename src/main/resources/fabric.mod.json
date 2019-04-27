@@ -2,7 +2,7 @@
     "schemaVersion": 1,
     "id": "sodden",
     "name": "Sodden",
-    "version": "1.0.1.1",
+    "version": "1.0.1.2",
     "description": "Adds configurable, tiered watering cans to accelerate plant growth.",
     "authors": [
         "toyhippogriff"

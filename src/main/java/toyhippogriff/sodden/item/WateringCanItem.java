@@ -100,8 +100,6 @@ public class WateringCanItem extends Item
                     itemStack.setDamage(Math.min(itemStack.getDamage() + material.getUsage(), material.getCapacity()));
                 }
             }
-
-            return new TypedActionResult<>(ActionResult.SUCCESS, itemStack);
         }
 
         return new TypedActionResult<>(ActionResult.PASS, itemStack);

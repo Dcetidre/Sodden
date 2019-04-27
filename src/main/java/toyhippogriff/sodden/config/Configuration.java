@@ -38,7 +38,7 @@ public class Configuration
             Configuration.CONSUME_WATER = jsonObject.getAsJsonPrimitive("consume_water").getAsBoolean();
             Configuration.MOISTURIZE_FARMLAND = jsonObject.getAsJsonPrimitive("moisturize_farmland").getAsBoolean();
             Configuration.EXTINGUISH_FIRE = jsonObject.getAsJsonPrimitive("extinguish_fire").getAsBoolean();
-            Configuration.SPAWN_PARTICLES = jsonObject.getAsJsonPrimitive("spawn_partciles").getAsBoolean();
+            Configuration.SPAWN_PARTICLES = jsonObject.getAsJsonPrimitive("spawn_particles").getAsBoolean();
         }
         catch(IOException exception)
         {
