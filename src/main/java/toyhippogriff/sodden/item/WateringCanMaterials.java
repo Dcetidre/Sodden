@@ -4,8 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import toyhippogriff.sodden.api.item.WateringCanMaterial;
 
-public enum WateringCanMaterials implements WateringCanMaterial
-{
+public enum WateringCanMaterials implements WateringCanMaterial {
     WOOD(4000, 50, 0, 0.35F, 0.0F, 0.15F),
     STONE(16000, 100, 1, 0.4F, 0.0F, 0.25F),
     IRON(64000, 250, 2, 0.45F, 0.0F, 0.35F),
@@ -19,8 +18,7 @@ public enum WateringCanMaterials implements WateringCanMaterial
     private float flowerGrowthChance;
     private float spreadChance;
 
-    WateringCanMaterials(int capacity, int usage, int radius, float cropGrowthChance, float flowerGrowthChance, float spreadChance)
-    {
+    WateringCanMaterials(int capacity, int usage, int radius, float cropGrowthChance, float flowerGrowthChance, float spreadChance) {
         this.capacity = capacity;
         this.usage = usage;
         this.radius = radius;
@@ -65,8 +63,7 @@ public enum WateringCanMaterials implements WateringCanMaterial
         return spreadChance;
     }
 
-    public void deserialize(JsonElement jsonElement)
-    {
+    public void deserialize(JsonElement jsonElement) {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
 
         this.capacity = jsonObject.getAsJsonPrimitive("capacity").getAsInt();
@@ -77,8 +74,7 @@ public enum WateringCanMaterials implements WateringCanMaterial
         this.spreadChance = jsonObject.getAsJsonPrimitive("spread_chance").getAsFloat();
     }
 
-    public JsonObject serialize()
-    {
+    public JsonObject serialize() {
         JsonObject jsonObject = new JsonObject();
 
         jsonObject.addProperty("capacity", capacity);

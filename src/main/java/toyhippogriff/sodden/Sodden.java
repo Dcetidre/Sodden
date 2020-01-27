@@ -12,8 +12,7 @@ import toyhippogriff.sodden.config.Configuration;
 import toyhippogriff.sodden.item.WateringCanItem;
 import toyhippogriff.sodden.item.WateringCanMaterials;
 
-public class Sodden implements ModInitializer
-{
+public class Sodden implements ModInitializer {
     public static final Logger LOG = LogManager.getLogger("Sodden");
 
     public static final Item WOODEN_WATERING_CAN = new WateringCanItem(WateringCanMaterials.WOOD);
@@ -25,8 +24,7 @@ public class Sodden implements ModInitializer
     public static final Tag<Item> WATERING_CANS = TagRegistry.item(new Identifier("sodden", "watering_cans"));
 
     @Override
-    public void onInitialize()
-    {
+    public void onInitialize() {
         Configuration.load();
 
         Registry.register(Registry.ITEM, new Identifier("sodden", "wooden_watering_can"), WOODEN_WATERING_CAN);

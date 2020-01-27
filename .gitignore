@@ -12,6 +12,9 @@ classes/
 *.ipr
 *.iws
 
+#other
+*.txt
+*.lnk
 # vscode
 
 .settings/
